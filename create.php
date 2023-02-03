@@ -5,7 +5,7 @@ include ("modulos/head.php");
 //Verifying the login time
 require ("loginTimeVerification.php");
 
-//Including the database conenection.
+//Including the database connection.
 include ("db/db.php");
 
 //We include the classes file so we can call the methods.
@@ -46,16 +46,16 @@ if (isset($_POST['tool']) || isset($_POST['quantity']) || isset($_POST['location
             VALUES ($quantity, '$description', '$tool', $colorId, $locationId)";
 
             $result = $conn->query($sql);
-    //If there's any error adding the tool, this message is seen.
+    //If there's any error adding the tool, these messages are seen.
             if(!$result){
-    //Creating the session variable containing the messages when the tool is added.
+    //Creating the session variable containing the message when there's a failure adding the tool.
             $_SESSION['message'] = "Error al agregar herramienta!";
             $_SESSION['message_alert'] = "danger";
 
-    //After the tool has been added, the page is redirected to the add-tools.php.
+    //After the verification, the page is redirected to the add-tools.php.
             header('Location: add-tools.php');
             } else {
-                    //Creating the session variable containing the messages when the tool is added.
+    //Creating the session variable containing the messages when the tool is added.
             $_SESSION['message'] = "Herramienta agregada!";
             $_SESSION['message_alert'] = "success";
 
@@ -63,19 +63,19 @@ if (isset($_POST['tool']) || isset($_POST['quantity']) || isset($_POST['location
             header('Location: add-tools.php');
             }
         } else {
-    //Creating the session variable containing the messages when the tool is added.
+    //Creating the session variable containing the messages when the tool is already in the db.
         $_SESSION['message'] = "Ya ha sido agregada!";
         $_SESSION['message_alert'] = "danger";
 
-    //After the tool has been added, the page is redirected to the add-tools.php.
+    //After the verification, the page is redirected to the add-tools.php.
         header('Location: add-tools.php');
         }
     } else {
-        //Creating the session variable containing the messages when the tool is added.
+    //Creating the session variable containing the message when some inputs that shouldn't are empty.
         $_SESSION['message'] = "Complete todos los campos!";
         $_SESSION['message_alert'] = "danger";
 
-        //After the tool has been added, the page is redirected to the add-tools.php.
+    //After the verification, the page is redirected to the add-tools.php.
         header('Location: add-tools.php');
     }
 } 

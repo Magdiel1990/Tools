@@ -20,7 +20,7 @@ include ("db/db.php");
         if(isset($_SESSION['message'])){
             $successAlert = new alertButtons($_SESSION['message_alert'], $_SESSION['message']);
             $successAlert -> buttonMessage();
-    //Unsetting the message variables so the message fades after refreshing the page.
+    //Emptying the message variables so the message fades after refreshing the page.
             unset($_SESSION['message_alert'], $_SESSION['message']);
         }
     ?>
