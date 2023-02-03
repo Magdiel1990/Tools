@@ -1,0 +1,36 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+/*Style for the labels*/
+label {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+}
+/*Style for the closure button of the messages*/
+.close {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+/*Style for the titles of the forms and tables*/
+h4 {
+    color: rgb(52, 52, 231);
+    font-weight: bold;
+}
+/*Style for the inputs*/
+.form-group {
+    margin-top: 0.5rem;
+}
+/*Style for the exit upper-right button*/
+.fa-person-walking-dashed-line-arrow-right, .fa-clipboard, .fa-eraser {
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+.fa-person-walking-dashed-line-arrow-right:hover, .fa-clipboard:hover {
+    color: rgb(248, 192, 192);
+    font-size: 1.2rem;
+}
+.bg-login {
+    background-image: url("../imgs/tools.jpg");
+    background-size: cover;
+}
