@@ -1,8 +1,8 @@
 <?php
-//Including the head (head, session_start, classes, database connection).
+//Including the head and session_start.
 include ("modulos/head.php");
 
-//Including the database conenection.
+//Including the database connection.
 include ("db/db.php");
 
 //Verifying that the id value comes with data.
@@ -15,24 +15,23 @@ $sql = "DELETE FROM register WHERE id = $id";
 $result = $conn -> query($sql);
 //If there's no record with that id, a message is sent.
     if(!$result){
-        //Creation of the message of success deleting the tool.
+//Creation of the message of error deleting the tool.
         $_SESSION['message'] = 'Error al eliminar la herramienta!';
         $_SESSION['message_alert'] = "danger";
 
-        //After the tool has been added, the page is redirected to the index.php.
+//The page is redirected to the index.php.
         header('Location: index.php');
     } else {
-        //Creation of the message of success deleting the tool.
+//Creation of the message of success deleting the tool.
         $_SESSION['message'] = 'Herramienta eliminada!';
         $_SESSION['message_alert'] = "success";
 
-        //Exiting the connection to the database.
-        $conn -> close(); 
-        //After the tool has been added, the page is redirected to the index.php.
+//After the tool has been deleted, the page is redirected to the index.php.
         header('Location: index.php');
     }
 }
-
-//We include the footer (jquery, bootstrap and popper scripts; and the closure of the database connection).
+//Exiting the connection to the database.
+$conn -> close(); 
+//We include the footer (jquery, bootstrap and popper scripts).
 include("modulos/footer.php");
 ?>

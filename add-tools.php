@@ -1,5 +1,5 @@
 <?php
-//Including the head (head, session_start, classes, database connection).
+//Including the head and session_start.
 include ("modulos/head.php");
 
 //Verifying the login time
@@ -18,8 +18,8 @@ include ("db/db.php");
     <?php
     //Message when the tool has been added successfully.
         if(isset($_SESSION['message'])){
-            $successAlert = new alertButtons($_SESSION['message_alert'], $_SESSION['message']);
-            $successAlert -> buttonMessage();
+            $message = new alertButtons($_SESSION['message_alert'], $_SESSION['message']);
+            $message -> buttonMessage();
     //Emptying the message variables so the message fades after refreshing the page.
             unset($_SESSION['message_alert'], $_SESSION['message']);
         }
@@ -87,6 +87,6 @@ include ("db/db.php");
 <?php
 //Closing the connection.
 $conn -> close();
-//We include the footer (jquery, bootstrap and popper scripts; and the closure of the database connection).        
+//We include the footer (jquery, bootstrap and popper scripts).        
 include("modulos/footer.php");
 ?>

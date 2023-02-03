@@ -1,5 +1,5 @@
 <?php
-//Including the head (head, session_start, classes, database connection).
+//Including the head and session_start.
 include ("modulos/head.php");
 
 //We include the classes file so we can call the methods.
@@ -64,7 +64,7 @@ if(isset($_POST['username']) || isset($_POST['password'])){
 //Closing the connection.
 $conn -> close();
 
-//We include the footer (jquery, bootstrap and popper scripts; and the closure of the database connection).
+//We include the footer (jquery, bootstrap and popper scripts).
 include("modulos/footer.php");
 ?>
 

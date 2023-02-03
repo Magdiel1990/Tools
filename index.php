@@ -1,5 +1,5 @@
 <?php
-//Including the head (head, session_start, classes, database connection).
+//Including the head and session_start.
 include ("modulos/head.php");
 
 //Verifying the login time
@@ -111,6 +111,6 @@ include("modulos/nav.php");
     }
 </script>
 <?php
-//We include the footer (jquery, bootstrap and popper scripts; and the closure of the database connection).
+//We include the footer (jquery, bootstrap and popper scripts).
 include("modulos/footer.php");
 ?>

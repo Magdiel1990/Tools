@@ -1,5 +1,5 @@
 <?php
-//Including the head (head, session_start, classes, database connection).
+//Including the head and session_start.
 include ("modulos/head.php");
 
 //Verifying the login time
@@ -63,7 +63,7 @@ if (isset($_POST['tool']) || isset($_POST['quantity']) || isset($_POST['location
             header('Location: add-tools.php');
             }
         } else {
-    //Creating the session variable containing the messages when the tool is already in the db.
+    // If it's not new we create the session variable containing the message.
         $_SESSION['message'] = "Ya ha sido agregada!";
         $_SESSION['message_alert'] = "danger";
 
@@ -83,6 +83,6 @@ if (isset($_POST['tool']) || isset($_POST['quantity']) || isset($_POST['location
 //Closing the connection.
 $conn -> close();
 
-//We include the footer (jquery, bootstrap and popper scripts; and the closure of the database connection).        
+//We include the footer (jquery, bootstrap and popper scripts).        
 include("modulos/footer.php");
 ?>
