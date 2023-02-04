@@ -40,10 +40,12 @@ if(isset($_POST["username"]) && isset($_POST["password"])  && isset($_POST["vali
             header('Location: deleteAll.php');            
             } else {
 //If it's an Admin user, the delection process is carried out.
-
+                
 //SQL file existance verification.
-                if(is_file("sql/toolDB.sql")){
-                    $file ="sql/toolDB.sql";
+                $file ="sql/toolDB.sql";
+//If the directory doesn't exist, it's created
+                if(!is_file($file)){
+                    mkdir($file, 0777);
                 } 
 //If the SQL file exists, we store in variables the data of the database.
                 $database ="tools";

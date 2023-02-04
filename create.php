@@ -26,8 +26,7 @@ if (isset($_POST['tool']) || isset($_POST['quantity']) || isset($_POST['location
         $tool = filter_var(trim($tool), FILTER_SANITIZE_STRING);
         $quantity = filter_var(trim($quantity), FILTER_SANITIZE_NUMBER_INT);
         $description = filter_var(trim($description), FILTER_SANITIZE_STRING); 
-    //Putting the tools names in lowercase.
-        $tool = strtolower($tool);
+  
     //Determining the id of the colors.
         $colorId = new idSelection('id_color', 'color', $color);
         $colorId = $colorId->idSelection($conn);

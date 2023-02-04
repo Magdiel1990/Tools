@@ -8,7 +8,7 @@ require ("loginTimeVerification.php");
 //We include the classes file so we can call the methods.
 include ("classes/classes.php");
 
-//Including the database conenection.
+//Including the database connection.
 include ("db/db.php");
 
 //Verifying that the id value comes with data.
@@ -39,44 +39,51 @@ if(isset($_POST['update'])){
     $location = $_POST['location'];
     $color = $_POST['color'];
     $description = $_POST['description'];
-    //Compruebo que no haya valores vacíos donde no se ameritan.
+
+//Compruebo que no haya valores vacíos donde no se ameritan.
     if($tool != "" && $quantity != "" && $location != "" && $color != "" && $id != "") {
-    //Sanitation of the data written by the users
+
+//Sanitation of the data written by the users
         $tool = filter_var(trim($tool), FILTER_SANITIZE_STRING);
         $quantity = filter_var(trim($quantity), FILTER_SANITIZE_NUMBER_INT);
         $description = filter_var(trim($description), FILTER_SANITIZE_STRING);
-    //Determining the id of the locations.
+
+//Determining the id of the locations.
         $LocationId = new idSelection('id_location', 'location', $location);
         $LocationId = $LocationId->idSelection($conn);
-    //Determining the id of the colors.
+
+//Determining the id of the colors.
         $colorId = new idSelection('id_color', 'color', $color);
         $colorId = $colorId->idSelection($conn);
-    //Updating of the registers.
-        $sql = "UPDATE register SET quantity = $quantity, tools = '$tool', id_location = $LocationId, id_color = $colorId  , description= '$description' WHERE id = $id";
 
+//Updating of the registers.
+        $sql = "UPDATE register SET quantity = $quantity, tools = '$tool', id_location = $LocationId, id_color = $colorId  , description= '$description' WHERE id = $id";
         $conn -> query($sql);
-    //After the tool has been updated, the page is redirected to the index.php.
+
+//After the tool has been updated, the page is redirected to the index.php.
         header("Location: index.php");
     } else {
-      //Creating the session variable containing the messages when the tool is added.
+//Creating the session variables containing the messages when all the fields are not filled.
       $_SESSION['message'] = "Complete todos los campos!";
       $_SESSION['message_alert'] = "danger";
 
-      //After the tool has been added, the page is redirected to the add-tools.php.
+//After the tool has been added, the page is redirected to the update.php.
       header('Location: update.php');
     }
 }
+
 //Including the navigation file.
 include("modulos/nav.php");
+
 ?>
 <!--Formulario para actualizar datos.-->
 <main class="container p-4 text-center"> 
     <?php
-    //Message when the tool has been added successfully.
+//Message when the tool has been added successfully.
         if(isset($_SESSION['message'])){
-            $successAlert = new alertButtons($_SESSION['message_alert'], $_SESSION['message']);
-            $successAlert -> buttonMessage();
-    //Unsetting the message variables so the message fades after refreshing the page.
+            $message = new alertButtons($_SESSION['message_alert'], $_SESSION['message']);
+            $message -> buttonMessage();
+//Unsetting the message variables so the message fades after refreshing the page.
             unset($_SESSION['message_alert'], $_SESSION['message']);
         }
     ?>
