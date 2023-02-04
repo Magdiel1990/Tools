@@ -26,6 +26,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])  && isset($_POST["vali
             $username = filter_var(trim($username), FILTER_SANITIZE_STRING);
             $password  = filter_var(trim($password), FILTER_SANITIZE_STRING);
             $acceptance = filter_var(trim($acceptance), FILTER_SANITIZE_STRING);
+            
 //We verify if is the user is an Admin user who has the permition to perform the task.
             $sql = "SELECT * FROM users WHERE username =  '$username' AND password = '$password' AND status = 'Admin'";
             $result = $conn -> query($sql);
@@ -33,7 +34,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])  && isset($_POST["vali
 //If it's not a Admin user, a message of rejection is sent.
             if($num_rows == 0){
             //Creating the session variable containing the messages when the tool is added.
-            $_SESSION['message'] = "No tiene permiso para realizar esta acción!";
+            $_SESSION['message'] = "Usuario administrador o contraseña incorrectos!";
             $_SESSION['message_alert'] = "danger";
             
 //The user is sent to index.php.
@@ -52,12 +53,15 @@ if(isset($_POST["username"]) && isset($_POST["password"])  && isset($_POST["vali
                 $db_hostname = "127.0.0.1:3306";
                 $db_username= "root";
                 $db_password = "123456";
-//We execute the sql file scripts
+//We execute the sql file scripts and redirect to the index.php
                 $dsn = "mysql:dbname=$database;host=$db_hostname";
                 $db = new PDO($dsn, $db_username, $db_password);
                 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
                 $sql = file_get_contents($file);
                 $db->exec($sql);
+
+                header('Location: index.php');
+
             }
         } else {
 //If the user don't fill the all required field, we respond with this message, and send him back to deleteAll.php.
