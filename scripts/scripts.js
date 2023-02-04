@@ -1,3 +1,4 @@
+//Function to validate if all the fields of the form were filled
 function validateForm () {
     let tool = document.forms["toolRegister"]["tool"].value;
     let quantity = document.forms["toolRegister"]["quantity"].value;
@@ -9,17 +10,3 @@ function validateForm () {
     }
 }
 
-function showCustomer(str) {
-    if (str == "") {
-      document.getElementById("txtHint").innerHTML = "";
-      return;
-    }
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-      document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-    xhttp.open("GET", "add-tools.php?q="+str);
-    xhttp.send();
-  }
-
- 

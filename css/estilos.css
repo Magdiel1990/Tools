@@ -1,5 +1,8 @@
 * {
     font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 /*Style for the labels*/
 label {
@@ -30,6 +33,7 @@ h4 {
     color: rgb(248, 192, 192);
     font-size: 1.2rem;
 }
+/*Style for the background image of the login*/
 .bg-login {
     background-image: url("../imgs/tools.jpg");
     background-size: cover;
