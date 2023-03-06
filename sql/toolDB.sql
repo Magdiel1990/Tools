@@ -4,15 +4,11 @@
 # Author:                Magdiel Castillo                                #
 # Created on:            2023-01-08 06:00                                #
 # ---------------------------------------------------------------------- #
+DROP DATABASE IF EXISTS Tools;
 
-DROP VIEW IF EXISTS registersum;
+CREATE DATABASE IF NOT EXISTS Tools;
 
-DROP TABLE IF EXISTS register;
-
-DROP TABLE IF EXISTS color;
-
-DROP TABLE IF EXISTS `location`;
-
+USE Tools;
 
 # ---------------------------------------------------------------------- #
 # Tables                                                                 #
@@ -72,16 +68,35 @@ VALUES
 # ---------------------------------------------------------------------- #
 
 INSERT INTO
-	`location` (location)
+	location (location)
 VALUES
 	('caja de herramientas'), ('gaveta grande'), ('gaveta pequeña de medio'), ('mochila'), ('bulto móvil pequeño'), ('pulto grande');
 
+# ---------------------------------------------------------------------- #
+# Add table "users"                                                      #
+# ---------------------------------------------------------------------- #
+
+create table users (
+	userId int auto_increment not null,
+    name varchar(30) not null,
+    username varchar(30) not null unique,
+    password varchar(50) not null,
+    status varchar(20) not null,
+    date timestamp default current_timestamp,
+    primary key(userId)
+);
 
 # ---------------------------------------------------------------------- #
-# Add VIEW "registersum"                                                 #
+# Add info into "users   "                                               #
 # ---------------------------------------------------------------------- #
 
-CREATE VIEW registersum AS
+insert into users 
+	(name, username, password, status)
+values 
+	("Magdiel Castillo","Magdiel","123456", "Admin");
+    
+    
+CREATE view registersum as
 
 SELECT r.id as `id`, concat_ws(' ', r.tools, 'en', l.location) as `tools`, c.color as `color`
         , r.quantity as `quantity`, r.description as `description`, r.fecha as `fecha` FROM register as r inner join `location` as l on 
